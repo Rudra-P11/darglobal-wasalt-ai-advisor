@@ -1,0 +1,131 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg-main: #FAF9F6;
+    --bg-secondary: #F3F0EA;
+    --bg-card: #FFFFFF;
+    --text-primary: #282722;
+    --text-secondary: #77736B;
+    --text-muted: #9E9B93;
+    --border-color: #E9E5DD;
+    --border-strong: #D8D4CA;
+    --accent: #D97757;
+    --accent-hover: #C86647;
+    --accent-subtle: rgba(217, 119, 87, 0.08);
+    --success: #27845A;
+  }
+
+  .dark {
+    --bg-main: #121210;
+    --bg-secondary: #1C1B18;
+    --bg-card: #22211D;
+    --text-primary: #F5F3EF;
+    --text-secondary: #A39F97;
+    --text-muted: #6E6B65;
+    --border-color: #2E2D28;
+    --border-strong: #3E3C36;
+    --accent: #D97757;
+    --accent-hover: #C86647;
+    --accent-subtle: rgba(217, 119, 87, 0.16);
+    --success: #34A872;
+  }
+
+  * {
+    border-color: var(--border-color);
+  }
+
+  body {
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* Elegant minimalist scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(150, 145, 135, 0.25);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(150, 145, 135, 0.45);
+}
+
+/* Markdown prose styling */
+.markdown-content p {
+  margin-bottom: 0.85em;
+  line-height: 1.68;
+}
+.markdown-content p:last-child {
+  margin-bottom: 0;
+}
+.markdown-content h1,
+.markdown-content h2,
+.markdown-content h3,
+.markdown-content h4 {
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin-top: 1.25em;
+  margin-bottom: 0.5em;
+  color: var(--text-primary);
+}
+.markdown-content h1 { font-size: 1.45rem; }
+.markdown-content h2 { font-size: 1.25rem; }
+.markdown-content h3 { font-size: 1.1rem; }
+.markdown-content ul,
+.markdown-content ol {
+  margin-top: 0.5em;
+  margin-bottom: 0.85em;
+  padding-left: 1.25em;
+}
+.markdown-content li {
+  margin-bottom: 0.35em;
+  line-height: 1.6;
+}
+.markdown-content strong {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+.markdown-content a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+  transition: opacity 150ms ease;
+}
+.markdown-content a:hover {
+  opacity: 0.8;
+}
+.markdown-content blockquote {
+  border-left: 2px solid var(--accent);
+  padding-left: 1rem;
+  margin: 1rem 0;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+.markdown-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  font-size: 0.875rem;
+}
+.markdown-content th,
+.markdown-content td {
+  padding: 0.65rem 0.85rem;
+  border-bottom: 1px solid var(--border-color);
+  text-align: left;
+}
+.markdown-content th {
+  font-weight: 500;
+  background-color: var(--bg-secondary);
+  color: var(--text-secondary);
+}
