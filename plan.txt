@@ -1,0 +1,75 @@
+This is an excellent, highly practical take-home assignment for an AI Engineer role. It tests your end-to-end capabilities: data engineering (scraping), ML engineering (RAG, LLM integration), software engineering (containerization), and DevOps (deployment).
+
+Here is a comprehensive breakdown of the feasibility, the step-by-step execution plan, and the exact strategies you can use to go above and beyond to impress the recruiters.
+
+---
+
+### 1. Feasibility Check
+
+**Overall Feasibility: High (10/10)**
+
+* **Timeframe:** Can comfortably be completed in 15–25 hours over a weekend.
+* **Cost:** $0. Everything can be done using free tiers.
+* **Potential Bottlenecks:**
+* *Scraping:* Real estate websites (DarGlobal and Wasalt) often use JavaScript-heavy rendering (React/Next.js) or have anti-bot protections (like Cloudflare). Simple `requests` might fail.
+* *Deployment Memory Limits:* Free-tier hosting often restricts memory (e.g., 512MB on Render). You must use a lightweight Vector Database and local embeddings.
+
+---
+
+### 2. What to Do & How to Do It (The Blueprint)
+
+#### Step 1: Data Scraping (The Foundation)
+
+* **The Challenge:** Real estate sites load dynamically.
+* **The Solution:** Use **Playwright** (Python). It is faster and more modern than Selenium.
+* **How:**
+* Scrape text content like property descriptions, FAQs, company "About Us" pages, and location details.
+* Clean the data (remove HTML tags, fix spacing) and save it to a structured format like JSON or CSV.
+* *Pro Tip:* Respect `robots.txt` and add a small delay (e.g., 1-2 seconds) between page requests to avoid getting IP banned.
+
+#### Step 2: Building the RAG Pipeline (The Brains)
+
+You need to build a Retrieval-Augmented Generation (RAG) system so the chatbot actually uses the scraped data.
+
+* **Embeddings:** Since you are using a free setup, do not use OpenAI embeddings. Use locally hosted free embeddings via HuggingFace `sentence-transformers` (e.g., `all-MiniLM-L6-v2`). It runs perfectly on CPU.
+* **Vector Database:** Use **FAISS** (by Meta) or **ChromaDB**. FAISS is highly recommended because it is strictly in-memory, incredibly fast, and very lightweight for free-tier deployments.
+* **Chunking:** Use LangChain or LlamaIndex's `RecursiveCharacterTextSplitter` to chunk the scraped data (e.g., chunk size 500, overlap 50) before embedding.
+
+#### Step 3: LLM Integration (OpenRouter)
+
+OpenRouter provides an OpenAI-compatible API that aggregates dozens of models, many of which have robust free tiers.
+
+* **Model Choice:** Use **Meta Llama 3 (8B Instruct)** or **Mistral 7B Instruct**. They are frequently free on OpenRouter and offer top-tier performance for their size.
+* **How:** Use LangChain's `ChatOpenAI` wrapper and point the base URL to OpenRouter.
+
+```python
+from langchain_openai import ChatOpenAI
+llm = ChatOpenAI(
+    openai_api_key="YOUR_OPENROUTER_KEY",
+    openai_api_base="https://openrouter.ai/api/v1",
+    model_name="meta-llama/llama-3-8b-instruct:free"
+)
+```
+
+#### Step 4: The Application UI
+
+* Use **Modern React / Node.js / Tailwind CSS** or **FastAPI + Modern React Web UI** or **Streamlit**. Note user asked: "Modern React/Node.js/tailwindcss4 UI with sources cited" in the prompt checklist, or we can build a sleek FastAPI + React / Tailwind UI (or full-stack Node/FastAPI/React, or single container with FastAPI serving React frontend or Express/React).
+
+#### Step 5: Containerization (Docker)
+
+* Write a clean `Dockerfile`. Keep it lightweight by using a slim Python image.
+
+#### Step 6: Deployment
+
+* **Hugging Face Spaces (Docker Space)** or Render / Fly.io / Railway.
+
+---
+
+### 3. How to Impress the Recruiters (The "Wow" Factor)
+
+1. **Citation & Source Tracking**
+2. **Conversational Memory**
+3. **Clean Code & Architecture**
+4. **System Prompts & Guardrails**
+5. **A Stellar README.md**
+6. **Environment Variables Management**
